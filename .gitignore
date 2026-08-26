@@ -1,0 +1,9 @@
+.DS_Store
+shots/
+wp-theme/
+mockups/observatory/
+# source media; the derived, web-sized copies live in docs/
+movies/
+visuals/
+mockups/assets/
+VadimSemenov-CV.pdf

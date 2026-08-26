@@ -1,0 +1,15 @@
+*{margin:0;padding:0;box-sizing:border-box}
+img,video{max-width:100%}
+ul{list-style:none}
+.mockbar{position:fixed;right:14px;bottom:14px;z-index:900;display:flex;gap:2px;
+ align-items:center;background:rgba(16,18,22,.93);backdrop-filter:blur(10px);
+ border:1px solid #2c343f;border-radius:100px;padding:5px 6px;
+ font:400 11px/1 Inter,system-ui,sans-serif;letter-spacing:.06em;box-shadow:0 6px 24px rgba(0,0,0,.3)}
+.mockbar .mocklabel{color:#6d7887;padding:0 8px;text-transform:uppercase;letter-spacing:.14em}
+.mockbar a{color:#aeb9c7;text-decoration:none;padding:6px 10px;border-radius:100px}
+.mockbar a:hover{background:#232b35;color:#fff}
+.mockbar a.on{background:#63d3ff;color:#07090d}
+.mockbar .mockhome{color:#63d3ff}
+@media(max-width:640px){.mockbar .mocklabel{display:none}.mockbar a{padding:6px 7px}}
+/* Full-page capture: a very tall viewport must not stretch vh-based heroes. */
+@media(min-height:1400px){.hero{height:860px!important}.split{min-height:860px!important}}

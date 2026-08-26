@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vadim Semenov &mdash; Journal</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Fraunces:opsz,wght@9..144,300;9..144,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/reset.css">
+<style>
+:root{--bg:#fbfaf7;--fg:#1b1a16;--mut:#6f6a5e;--line:#e0dcd2;--acc:#a8701a}
+body{background:var(--bg);color:var(--fg);font:400 17px/1.72 Inter,system-ui,sans-serif}
+a{color:var(--acc)}
+.masthead{max-width:900px;margin:0 auto;padding:6rem 32px 2.5rem;text-align:center}
+.masthead h1{font:300 clamp(2.8rem,6.5vw,4.6rem)/1 Newsreader,Georgia,serif;letter-spacing:-.02em}
+.masthead .sub{margin-top:1rem;font:italic 300 1.25rem/1.5 Newsreader,Georgia,serif;color:var(--mut)}
+.masthead .aff{margin-top:.9rem;font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+ color:var(--mut)}
+.rule{max-width:900px;margin:0 auto;border-top:1px solid var(--fg);height:0}
+.rule.thin{border-color:var(--line)}
+nav.top{display:flex;gap:2.4rem;justify-content:center;padding:1.1rem;font-size:.72rem;
+ letter-spacing:.2em;text-transform:uppercase;border-bottom:1px solid var(--line);
+ position:sticky;top:0;background:rgba(251,250,247,.93);backdrop-filter:blur(10px);z-index:50}
+nav.top a{color:var(--fg);text-decoration:none;opacity:.65}
+nav.top a:hover{opacity:1;color:var(--acc)}
+.wrap{max-width:660px;margin:0 auto;padding:0 32px}
+section{padding:5.5rem 0}
+h2{font:400 .72rem/1 Inter,sans-serif;letter-spacing:.24em;text-transform:uppercase;
+ color:var(--acc);margin-bottom:2.4rem;padding-bottom:.9rem;border-bottom:1px solid var(--line)}
+h3{font:400 1.5rem/1.3 Newsreader,Georgia,serif;margin-bottom:.6rem}
+p{margin-bottom:1.25rem}
+.lede p:first-child{font:300 1.22rem/1.65 Newsreader,Georgia,serif}
+.tags{columns:2;list-style:none;margin-top:2.2rem;font-size:.95rem;color:var(--mut)}
+.tags li{padding:.28rem 0;break-inside:avoid}
+.stats{display:flex;flex-wrap:wrap;gap:2.6rem;margin-top:2.6rem;padding-top:1.6rem;
+ border-top:1px solid var(--line)}
+.stat b{display:block;font:300 2rem/1 Newsreader,Georgia,serif}
+.stat span{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.rs{margin-bottom:3.4rem}
+.rs .n{font:500 .7rem/1 Inter,sans-serif;letter-spacing:.18em;color:var(--acc);
+ text-transform:uppercase;display:block;margin-bottom:.5rem}
+.figs{max-width:1080px;margin:0 auto;padding:0 32px;display:grid;gap:4.5rem}
+.fig video{width:100%;height:auto;display:block;background:#111}
+.fig.paper video{background:#fff;border:1px solid var(--line)}
+figcaption{margin-top:.85rem;font-size:.88rem;color:var(--mut);
+ padding-top:.7rem;border-top:1px solid var(--line)}
+figcaption b{color:var(--acc);font-weight:500;letter-spacing:.1em;font-size:.7rem;
+ text-transform:uppercase;margin-right:.6rem}
+.pubs{list-style:none}
+.pubs li{padding:1.15rem 0;border-bottom:1px solid var(--line)}
+.pubs .au{font-size:.82rem;color:var(--mut)}
+.pubs .jr{font-size:.82rem;color:var(--acc);margin-left:.6rem}
+.pubs .ti{display:block;font:400 1.08rem/1.45 Newsreader,Georgia,serif;margin-top:.25rem}
+footer{padding:5rem 32px;text-align:center;color:var(--mut);font-size:.85rem;
+ border-top:1px solid var(--fg);max-width:900px;margin:0 auto}
+@media(max-width:640px){.tags{columns:1}}
+</style></head><body class="t-journal"><div class="mockbar"><span class="mocklabel">Mockup</span><a href="../observatory/">Observatory</a><a href="../journal/" class="on">Journal</a><a href="../grid/">Grid</a><a href="../atlas/">Atlas</a><a href="../split/">Split</a><a class="mockhome" href="../">all five</a></div>
+<header class="masthead"><h1>Vadim Semenov</h1><div class="sub">Computational astrophysicist</div>
+ <div class="aff">Center for Astrophysics | Harvard &amp; Smithsonian</div></header><div class="rule"></div>
+<nav class="top"><a href="#about">About</a><a href="#research">Research</a><a href="#publications">Publications</a><a href="#visualizations">Visualizations</a><a href="#cv">CV</a></nav>
+<section id="about"><div class="wrap lede"><h2>About</h2><p>I am a computational astrophysicist at the <a href="https://www.cfa.harvard.edu/">Center for
+    Astrophysics | Harvard &amp; Smithsonian</a>, where I have been a
+    <a href="https://hubblesite.org/contents/news-releases/2019/news-2019-24.html">NASA Hubble</a> and
+    <a href="https://itc.cfa.harvard.edu/">ITC</a> Postdoctoral Fellow since 2019. Since 2026 I am also
+    a STEM Fellow at Anthropic. I received my PhD from the
+    <a href="http://astro.uchicago.edu/index.php">University of Chicago</a> in 2019.</p><p>I work at the interface between the physics of the interstellar medium and the formation and
+    evolution of galaxies. Together with my collaborators, I design, run, and analyze supercomputer
+    simulations that span scales from individual star-forming regions to cosmological volumes.</p>
+ <ul class="tags"><li>Cosmological galaxy formation simulations</li><li>Formation of galactic disks</li><li>The first galaxies</li><li>The baryon cycle in and out of galaxies</li><li>Star formation scaling relations</li><li>Interstellar turbulence</li><li>Cosmic rays</li><li>Numerical methods</li></ul><div class="stats"><div class="stat"><b>34</b><span>papers</span></div><div class="stat"><b>14</b><span>first-author</span></div><div class="stat"><b>8</b><span>led by students</span></div><div class="stat"><b>20</b><span>h-index</span></div><div class="stat"><b>1200+</b><span>citations</span></div></div></div></section>
+<div class="rule thin"></div>
+<section id="research"><div class="wrap"><h2>Research</h2><div class="rs"><span class="n">01</span><h3>Modeling Early Turbulent Formation and Evolution of Galaxies</h3><p>JWST has revealed a surprisingly large population of UV-bright galaxies in the early
+        Universe, many of them already showing disk morphologies. We show that modeling star formation
+        together with the turbulent state of the interstellar medium is what produces both the early
+        variable star formation rates and the formation and survival of early disks.</p></div><div class="rs"><span class="n">02</span><h3>How Unusual is the Milky Way&rsquo;s Disk?</h3><p>Gaia, H3, and APOGEE suggest the disk of our Galaxy formed within the first 2 billion
+        years &mdash; far earlier than high-resolution cosmological simulations found. Using TNG50 we find
+        that Milky-Way-mass galaxies do form later on average, but the scatter is large: about 10% form
+        disks as early as the Milky Way did.</p></div><div class="rs"><span class="n">03</span><h3>Why do galaxies form stars inefficiently?</h3><p>We outline a framework connecting galaxy-scale star formation rates to the timescales
+        of gas cycling on the scales of star-forming regions. It explains the global inefficiency of star
+        formation, the near-linear correlation between star formation and molecular gas on kiloparsec
+        scales, and the self-regulation of star formation in simulations.</p></div><div class="rs"><span class="n">04</span><h3>Cosmic ray feedback</h3><p>Cosmic rays carry a significant fraction of the pressure and energy budget of the
+        interstellar medium. We show that the reduced propagation observed near star-forming regions
+        qualitatively changes the structure of galaxies, suppressing the formation of dense gas clumps in
+        gas-rich, unstable disks.</p></div></div></section>
+<div class="rule thin"></div>
+<section id="visualizations"><div class="wrap"><h2>Visualizations</h2></div>
+ <div class="figs"><figure class="fig dark"><video width="1200" height="600" preload="none" playsinline muted loop controls poster="../assets/video/semenov24-art.poster.jpg"><source src="../../movies/semenov24-art.mp4" type="video/mp4"></video><figcaption><b>Fig. 1</b>Cosmological simulation of a Milky Way-like galaxy analog</figcaption></figure><figure class="fig paper"><video width="2670" height="1500" preload="none" playsinline muted loop controls poster="../assets/video/semenov24-art-tng.poster.jpg"><source src="../../movies/semenov24-art-tng.mp4" type="video/mp4"></video><figcaption><b>Fig. 2</b>Cosmological simulation of a Milky Way-like galaxy with ART and TNG</figcaption></figure><figure class="fig paper"><video width="1950" height="870" preload="none" playsinline muted loop controls poster="../assets/video/semenov24-art-disk.poster.jpg"><source src="../../movies/semenov24-art-disk.mp4" type="video/mp4"></video><figcaption><b>Fig. 3</b>Disk formation in a cosmological simulation of a MW analog</figcaption></figure><figure class="fig dark"><video width="2000" height="1000" preload="none" playsinline muted loop controls poster="../assets/video/semenov17-maps.poster.jpg"><source src="../../movies/semenov17-maps.mp4" type="video/mp4"></video><figcaption><b>Fig. 4</b>Simulation of a galaxy with a subgrid turbulence model</figcaption></figure><figure class="fig paper"><video width="1232" height="720" preload="none" playsinline muted loop controls poster="../assets/video/semenov17-gas-cycling.poster.jpg"><source src="../../movies/semenov17-gas-cycling.mp4" type="video/mp4"></video><figcaption><b>Fig. 5</b>Cycling of interstellar gas between star-forming and non-star-forming states</figcaption></figure></div></section>
+<div class="rule thin"></div>
+<section id="publications"><div class="wrap"><h2>Selected publications</h2>
+ <ul class="pubs"><li><span class="au">Semenov 2026</span><span class="jr">ApJ accepted</span><span class="ti">How Do Disk Galaxies Form?</span></li><li><span class="au">Semenov, Conroy, Hernquist 2025</span><span class="jr">ApJ 989, 219</span><span class="ti">From UV-bright Galaxies to Early Disks: the Importance of Turbulent Star Formation in the Early Universe</span></li><li><span class="au">Semenov, Conroy, Smith, Puchwein, Hernquist 2025</span><span class="jr">ApJ 990, 7</span><span class="ti">How Early Could the Milky Way&rsquo;s Disk Form?</span></li><li><span class="au">Semenov 2025</span><span class="jr">ApJS 281, 37</span><span class="ti">Capturing Turbulence with Numerical Dissipation: a Simple Dynamical Model for Unresolved Turbulence</span></li><li><span class="au">Semenov, Conroy, Chandra, Hernquist, Nelson 2024</span><span class="jr">ApJ 962, 84</span><span class="ti">Formation of Galactic Disks I: Why did the Milky Way&rsquo;s Disk Form Unusually Early?</span></li></ul></div></section>
+<footer>vadim.semenov@cfa.harvard.edu</footer>
+<script src="../assets/mock.js"></script></body></html>

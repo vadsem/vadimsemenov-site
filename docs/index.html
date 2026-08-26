@@ -1,0 +1,229 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vadim Semenov &mdash; Computational astrophysicist</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png?v=1787700226">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png?v=1787700226"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/reset.css?v=1787681676">
+<style>
+:root{--bg:#07090d;--fg:#e8edf4;--mut:#8c98aa;--dim:#c3ccda;--line:#1c242f;--acc:#63d3ff}
+body{background:var(--bg);color:var(--fg);font:300 17px/1.75 Inter,system-ui,sans-serif;
+ -webkit-font-smoothing:antialiased}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:#9ee4ff}
+
+/* ---- hero (index only) ---- */
+.hero{position:relative;height:min(88vh,860px);display:grid;place-items:center;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.hero::after{content:"";position:absolute;inset:0;background:
+ radial-gradient(ellipse 70% 55% at 50% 46%,rgba(7,9,13,.72) 0%,rgba(7,9,13,.3) 60%,transparent 85%),
+ linear-gradient(to bottom,rgba(7,9,13,.5) 0%,transparent 30%,rgba(7,9,13,.6) 78%,var(--bg) 100%)}
+.hero .inner{position:relative;z-index:2;text-align:center;padding:0 24px}
+.hero h1{font-size:clamp(2.6rem,7vw,5.2rem);font-weight:200;letter-spacing:-.03em;line-height:1}
+.hero .sub{margin-top:1.1rem;color:#e3ebf5;font-size:clamp(.95rem,1.6vw,1.15rem)}
+.hero .aff{margin-top:.35rem;color:#a8b6c8;font-size:.9rem;letter-spacing:.06em;
+ text-transform:uppercase}
+
+/* ---- compact masthead (subpages) ---- */
+.mast{padding:4.5rem 24px 2.5rem;text-align:center}
+.mast h1{font-size:clamp(2rem,4.5vw,3rem);font-weight:200;letter-spacing:-.03em;line-height:1}
+.mast h1 a{color:inherit;text-decoration:none}
+.mast .aff{margin-top:.6rem;color:var(--mut);font-size:.8rem;letter-spacing:.16em;
+ text-transform:uppercase}
+
+nav.top{position:sticky;top:0;z-index:50;display:flex;gap:2rem;justify-content:center;
+ flex-wrap:wrap;padding:1rem;background:rgba(7,9,13,.72);backdrop-filter:blur(14px);
+ border-bottom:1px solid var(--line);font-size:.8rem;letter-spacing:.13em;text-transform:uppercase}
+nav.top a{color:var(--mut);text-decoration:none}
+nav.top a:hover{color:var(--fg)}
+nav.top a.on{color:var(--acc)}
+
+.wrap{max-width:680px;margin:0 auto;padding:0 24px}
+.wrap-lg{max-width:900px;margin:0 auto;padding:0 24px}
+.wide{max-width:1180px;margin:0 auto;padding:0 24px}
+section{padding:6rem 0}
+section+section{padding-top:0}
+h2{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);
+ font-weight:500;margin-bottom:2.5rem}
+h3{font-size:1.3rem;font-weight:400;letter-spacing:-.01em;margin-bottom:.7rem;line-height:1.3}
+p{margin-bottom:1.2rem;color:var(--dim)}
+
+/* ---- about ---- */
+.about{display:grid;grid-template-columns:1fr 240px;gap:3.5rem;align-items:start}
+.about .portrait{width:100%;border-radius:3px;display:block}
+.about .card{position:static}
+.about .card .contact{margin-top:1.1rem;font-size:.88rem;color:var(--mut);line-height:1.6}
+.about .card .contact a{display:block;word-break:break-all}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin-top:2rem}
+.cv{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;padding-top:2rem;
+ border-top:1px solid var(--line)}
+.cv h4{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);
+ font-weight:500;margin-bottom:1.1rem}
+.cv ul{list-style:none}
+.cv .org{padding:.7rem 0;border-bottom:1px solid rgba(28,36,47,.55)}
+.cv .org:last-child{border-bottom:0}
+.cv .o{display:block;font-size:.95rem;color:var(--fg)}
+.cv .org li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;align-items:baseline;
+ margin-top:.3rem}
+.cv .r{font-size:.85rem;color:var(--mut)}
+.cv .y{font-size:.8rem;color:#6f7a8a;white-space:nowrap}
+.tags li{border:1px solid var(--line);border-radius:100px;padding:.35rem .9rem;font-size:.82rem;
+ color:var(--mut)}
+
+/* ---- research ---- */
+.rs{scroll-margin-top:5.5rem;display:grid;grid-template-columns:150px minmax(0,1fr);gap:2.2rem;
+ margin-bottom:3.5rem;align-items:start}
+.rs>div{max-width:64ch}
+.rs .mini{width:150px;height:150px;object-fit:cover;border-radius:50%;background:#0d1117;
+ display:block}
+.rs:last-child{margin-bottom:0}
+.rs .kicker{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);
+ display:block;margin-bottom:.5rem}
+.rs .rsfig{margin:1.6rem 0 1.4rem}
+.rs .rsfig video{width:100%;height:auto;display:block;background:#000;border-radius:10px}
+.rs .rsfig.paper video{background:#fff;padding:10px;border-radius:10px}
+.rs .rsfig figcaption{margin-top:.6rem;font-size:.82rem;color:var(--mut)}
+.refs{list-style:none;margin-top:1.3rem;padding-top:1rem;border-top:1px solid var(--line)}
+.refs li{font-size:.84rem;line-height:1.6;color:#7d879a;margin-bottom:.35rem}
+.refs .ti{color:#93a0b3}
+.refs a{color:#6f9db4}
+.refs a:hover{color:var(--acc)}
+.refs .sep{opacity:.45;margin:0 .25rem}
+.refs .lnks{white-space:nowrap}
+.refs li{padding-left:1.4em;text-indent:-1.4em}
+
+/* ---- figures ---- */
+.figs{display:grid;gap:4rem}
+.fig video{width:100%;height:auto;display:block;background:#000;border-radius:10px}
+.fig.paper video{background:#fff;padding:14px;border-radius:10px}
+figcaption{margin-top:.9rem;font-size:.9rem;color:var(--mut)}
+.figlinks{display:block;margin-top:.35rem;font-size:.84rem}
+.figlinks a{color:#6f9db4}
+.figlinks a:hover{color:var(--acc)}
+.figlinks .sep{opacity:.45;margin:0 .45rem}
+
+/* ---- publications ---- */
+.stats{font-size:.9rem;color:var(--mut);margin-bottom:.9rem;line-height:1.8}
+.stats b{font-weight:400;color:var(--dim)}
+.stats a{color:var(--dim)}
+.stats a:hover{color:var(--acc)}
+.stats .sep{opacity:.4;margin:0 .5rem}
+.stats .note{opacity:.75}
+.links{margin-bottom:3rem;font-size:.9rem;display:flex;gap:1.6rem;flex-wrap:wrap;
+ padding-top:1.2rem;border-top:1px solid var(--line)}
+.pubs{list-style:none;margin-bottom:3.5rem}
+.pubgroup{font-size:1.5rem;letter-spacing:-.005em;text-transform:none;color:var(--acc);
+ font-weight:400;margin-bottom:1.7rem;padding-bottom:.8rem;
+ border-bottom:1px solid var(--line)}
+.pubs li{padding:1.1rem 0;border-bottom:1px solid var(--line)}
+.pubs .meta{font-size:.8rem;color:var(--mut);margin-bottom:.25rem}
+.pubs .meta .lnks{margin-left:.75rem}
+.pubs .meta a{color:#7fb4cc}
+.pubs .meta a:hover{color:var(--acc)}
+.pubs .sep{opacity:.45;margin:0 .4rem}
+.pubs .ti{font-size:1.02rem;line-height:1.45;max-width:74ch}
+
+footer{padding:4rem 24px;text-align:center;color:var(--mut);font-size:.85rem;
+ border-top:1px solid var(--line)}
+
+@media(max-width:820px){.about{grid-template-columns:1fr}.cv{grid-template-columns:1fr;gap:2rem}
+ .about .card{position:static;max-width:260px}}
+@media(max-width:640px){
+ .rs{grid-template-columns:1fr;gap:1.2rem}
+ .rs .mini{width:96px;height:96px}
+ section{padding:3rem 0}
+ .mast{padding:2.75rem 24px 1.75rem}
+ footer{padding:2.25rem 24px}
+ .hero .aff{font-size:.62rem;letter-spacing:.02em}
+ .mast .aff{font-size:.6rem;letter-spacing:.02em}
+ /* nav and profile links wrap to two rows here; 2rem gap applied to rows too */
+ nav.top{gap:.5rem 1.6rem;padding:.85rem 1rem}
+ .links{gap:.5rem 1.6rem;padding-top:.9rem;margin-bottom:2rem}
+ /* keep each metric and each journal ref whole */
+ .stats .item,.pubs .meta .nb{white-space:nowrap}
+ .stats .note{display:block;margin-top:.2rem;opacity:.85}
+ .stats .note>.sep{display:none}
+ /* research refs: link cluster drops below the title */
+ .refs .lnks{display:block;margin-top:.15rem;white-space:normal}
+ .refs .lnks>.sep:first-child{display:none}
+ /* publications: authors / links / title on three lines, tightened */
+ .pubs .meta .lnks{display:block;margin-left:0;margin-top:.15rem;white-space:normal}
+ .pubgroup{line-height:1.25;margin-bottom:1rem;padding-bottom:.6rem}
+ .pubs{margin-bottom:3rem}
+ .pubs li{padding:.85rem 0}
+ .pubs .meta{line-height:1.5}
+ .pubs .meta,.pubs .ti{text-wrap:pretty}
+}
+</style></head><body>
+<header class="hero"><img src="assets/img/frame.0396.density.jpg?v=1787679552" alt="Simulation of interstellar turbulence">
+ <div class="inner"><h1>Vadim Semenov</h1><div class="sub">Computational astrophysicist</div>
+ <div class="aff">Center for Astrophysics | Harvard &amp; Smithsonian</div></div></header>
+<nav class="top"><a href="index.html#about" class="on">About</a><a href="index.html#research">Research</a><a href="publications.html">Publications</a><a href="visualizations.html">Visualizations</a><a href="https://www.dropbox.com/scl/fi/m8q2ipx206lrzqg2akyem/VadimSemenov-CV.pdf?rlkey=pn1s1kxsd2cv5jgz7ykce1q13&st=to23s06l&dl=0" target="_blank" rel="noopener">CV</a></nav>
+<section id="about"><div class="wrap-lg"><h2>About</h2>
+ <div class="about"><div><p>I am a computational astrophysicist at the <a href="https://www.cfa.harvard.edu/" target="_blank" rel="noopener">Center for
+    Astrophysics | Harvard &amp; Smithsonian</a>, where I have been a
+    <a href="https://hubblesite.org/contents/news-releases/2019/news-2019-24.html" target="_blank" rel="noopener">NASA Hubble</a> and
+    <a href="https://itc.cfa.harvard.edu/" target="_blank" rel="noopener">ITC</a> Postdoctoral Fellow since 2019. I am spending the
+    summer of 2026 at Anthropic as a STEM Fellow. I received my PhD from the
+    <a href="https://astro.uchicago.edu/index.php" target="_blank" rel="noopener">University of Chicago</a> in 2019.</p><p>I work at the interface between the physics of the interstellar medium and galaxy formation.
+    Together with my collaborators, I design, run, and analyze supercomputer simulations that span
+    scales from individual star-forming regions to cosmological volumes. In my current work, I am also
+    exploring how next-generation numerical simulations can take advantage of AI and machine learning
+    methods.</p><ul class="tags"><li>AI for Science</li><li>High Performance Computing</li><li>Numerical Methods</li><li>Computational Fluid Dynamics</li><li>Large-Scale Cosmological Simulations</li></ul></div>
+ <div class="card"><img class="portrait" src="assets/img/portrait.jpg?v=1787682335" alt="Vadim Semenov">
+  <div class="contact"><a href="mailto:vadim.semenov@cfa.harvard.edu">vadim.semenov@cfa.harvard.edu</a></div></div>
+ </div><div class="cv"><div><h4>Positions</h4><div class="org"><span class="o">Anthropic</span><ul><li><span class="r">STEM Fellow</span><span class="y">Summer 2026</span></li></ul></div><div class="org"><span class="o">Harvard University</span><ul><li><span class="r">ITC Fellow</span><span class="y">since 2022</span></li><li><span class="r">NASA Hubble Fellow</span><span class="y">2019&ndash;2022</span></li></ul></div></div><div><h4>Education</h4><div class="org"><span class="o">University of Chicago</span><ul><li><span class="r">Ph.D. in Astronomy and Astrophysics</span><span class="y">2019</span></li></ul></div><div class="org"><span class="o">Moscow Institute of Physics and Technology</span><ul><li><span class="r">B.Sc. &amp; M.Sc. in Applied Math and Physics</span><span class="y">2013</span></li></ul></div></div></div></div></section>
+<section id="research"><div class="wrap-lg"><h2>Research</h2><div class="rs" id="current-work"><img class="mini" src="assets/icon/turbulence.png?v=1787684172" alt=""><div><span class="kicker">Current work</span><h3>Learning what simulations cannot resolve</h3><p>Modeling turbulent flows on unresolved scales is a general problem in fluid dynamics
+        simulations across domains, from aerospace engineering and climate models to astrophysics. In
+        each case the grid is far too coarse to follow the motions that still shape the large-scale
+        solution, so their effect has to be modeled rather than computed. Such subgrid models are a
+        natural place for next-generation simulations to take advantage of AI and machine learning
+        methods, and to leverage the rise of GPU computing. In my current work I explore how such
+        AI/ML-powered methods can be built into large-scale simulations to incorporate the missing
+        physics, learned from expensive but sparse high-fidelity simulation data.</p><figure class="rsfig dark"><video width="2048" height="1024" preload="none" playsinline muted loop controls poster="assets/video/semenov26-turb.poster.jpg?v=1787685055"><source src="movies/semenov26-turb.mp4?v=1781540950" type="video/mp4"></video><figcaption>Driven supersonic turbulence: gas density and velocity magnitude</figcaption></figure></div></div><div class="rs" id="first-galaxies"><img class="mini" src="assets/icon/zoom-logo.png?v=1787684172" alt=""><div><h3>Modeling the Turbulent Formation of the First Galaxies</h3><p>Why did galaxies in the early Universe form stars so quickly, and how did they settle
+        into disks so soon? The James Webb Space Telescope (JWST) has found far more bright young
+        galaxies in the first billion years than expected, and many already show disk morphologies and
+        kinematics, which fits earlier evidence from the Atacama Large Millimeter/submillimeter Array
+        (ALMA) for cold, rotating gas disks in the young Universe. We find that detailed modeling of
+        turbulence in early galaxies is crucial for explaining both of these at once: the early vigorous
+        evolution, and the transition to settled disks.</p><figure class="rsfig dark"><video width="1200" height="600" preload="none" playsinline muted loop controls poster="assets/video/semenov24-art.poster.jpg?v=1787679553"><source src="movies/semenov24-art.mp4?v=1737058685" type="video/mp4"></video><figcaption>Cosmological simulation of a Milky Way analog: gas density and small-scale turbulence</figcaption></figure><ul class="refs"><li>Semenov 2026<span class="sep">&middot;</span><span class="ti">How Do Disk Galaxies Form?</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/2602.04950" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://ui.adsabs.harvard.edu/abs/2026arXiv260204950S/abstract" target="_blank" rel="noopener">ADS</a></span></li><li>Semenov et al. 2025<span class="sep">&middot;</span><span class="ti">How Early Could the Milky Way&rsquo;s Disk Form?</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/2409.18173" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://ui.adsabs.harvard.edu/abs/2024arXiv240918173S/abstract" target="_blank" rel="noopener">ADS</a><span class="sep">&middot;</span><a href="https://iopscience.iop.org/article/10.3847/1538-4357/addf48" target="_blank" rel="noopener">Journal</a></span></li><li>Semenov et al. 2025<span class="sep">&middot;</span><span class="ti">From UV-bright Galaxies to Early Disks</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/2410.09205" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://ui.adsabs.harvard.edu/abs/2024arXiv241009205S/abstract" target="_blank" rel="noopener">ADS</a><span class="sep">&middot;</span><a href="https://iopscience.iop.org/article/10.3847/1538-4357/ade22d" target="_blank" rel="noopener">Journal</a></span></li></ul></div></div><div class="rs" id="milky-way-disk"><img class="mini" src="assets/icon/mw-logo.png?v=1787684172" alt=""><div><h3>How Unusual is the Milky Way&rsquo;s Disk?</h3><p>Did our Galaxy build its disk unusually early? Modern surveys such as Gaia and H3 let us
+        reconstruct our Galaxy&rsquo;s history by digging into the kinematics and chemistry of its
+        stars, an approach known as Galactic archaeology. We studied the same archaeological signatures
+        in simulated Milky Way analogs and found that such galaxies form their disks later on average,
+        indicating that the Milky Way is unusual but not rare. Comparisons of this kind let us learn
+        about both the physics of galaxy formation in general and the possible history of our own
+        Galaxy.</p><ul class="refs"><li>Semenov et al. 2024<span class="sep">&middot;</span><span class="ti">Formation of Galactic Disks I</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/2306.09398" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://ui.adsabs.harvard.edu/abs/2024ApJ...962...84S/abstract" target="_blank" rel="noopener">ADS</a><span class="sep">&middot;</span><a href="https://iopscience.iop.org/article/10.3847/1538-4357/ad150a" target="_blank" rel="noopener">Journal</a></span></li><li>Semenov et al. 2024<span class="sep">&middot;</span><span class="ti">Formation of Galactic Disks II</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/2306.13125" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://ui.adsabs.harvard.edu/abs/2023arXiv230613125S/abstract" target="_blank" rel="noopener">ADS</a><span class="sep">&middot;</span><a href="https://iopscience.iop.org/article/10.3847/1538-4357/ad57ba" target="_blank" rel="noopener">Journal</a></span></li><li>Chandra et al. 2024<span class="sep">&middot;</span><span class="ti">The Three-Phase Evolution of the Milky Way</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/2310.13050" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://ui.adsabs.harvard.edu/abs/2023arXiv231013050C/abstract" target="_blank" rel="noopener">ADS</a><span class="sep">&middot;</span><a href="https://iopscience.iop.org/article/10.3847/1538-4357/ad5b60" target="_blank" rel="noopener">Journal</a></span></li><li>Beane et al. 2025<span class="sep">&middot;</span><span class="ti">Rising from the Ashes II: Abundance Bimodality</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/2410.21580" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://ui.adsabs.harvard.edu/abs/2024arXiv241021580B/abstract" target="_blank" rel="noopener">ADS</a><span class="sep">&middot;</span><a href="https://iopscience.iop.org/article/10.3847/1538-4357/adceab" target="_blank" rel="noopener">Journal</a></span></li></ul></div></div><div class="rs" id="star-formation"><img class="mini" src="assets/icon/ngc300-icon.png?v=1787684172" alt=""><div><h3>Why do galaxies form stars inefficiently?</h3><p>Galaxies turn their gas into stars remarkably slowly, much slower than any relevant
+        dynamical timescale would suggest. This has been one of the biggest puzzles in the physics of
+        galaxies for many decades. We developed a framework that ties a galaxy&rsquo;s overall star
+        formation rate to how long gas spends in each stage of its life cycle on the scales of
+        individual star-forming regions, from assembly into dense star-forming clouds to dispersal by
+        the stars they form. The framework explains many puzzles about star formation in galaxies,
+        including why it is globally inefficient, the emergent scaling relations, and how it is
+        self-regulated in galaxy simulations. The same feedback loop also shapes the structure of the
+        gas between stars, so that structure records how the loop operates and enables us to constrain
+        the physics of this cycle from observations.</p><figure class="rsfig dark"><video width="2000" height="1000" preload="none" playsinline muted loop controls poster="assets/video/semenov21-ngc300.poster.jpg?v=1787679553"><source src="movies/semenov21-ngc300.mp4?v=1621435683" type="video/mp4"></video><figcaption>NGC300-like galaxy simulation with subgrid turbulence and radiative transfer</figcaption></figure><ul class="refs"><li>Semenov et al. 2017<span class="sep">&middot;</span><span class="ti">The Physical Origin of Long Gas Depletion Times</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/1704.04239" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://doi.org/10.3847/1538-4357/aa8096" target="_blank" rel="noopener">Journal</a></span></li><li>Semenov et al. 2018<span class="sep">&middot;</span><span class="ti">How Galaxies Form Stars</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/1803.00007" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://doi.org/10.3847/1538-4357/aac6eb" target="_blank" rel="noopener">Journal</a></span></li><li>Semenov et al. 2019<span class="sep">&middot;</span><span class="ti">What Sets the Slope of the Molecular KS Relation?</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/1809.07328" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://doi.org/10.3847/1538-4357/aaf163" target="_blank" rel="noopener">Journal</a></span></li><li>Semenov et al. 2021<span class="sep">&middot;</span><span class="ti">Spatial Decorrelation of Young Stars and Dense Gas</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/2103.13406" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://ui.adsabs.harvard.edu/abs/2021arXiv210313406S/abstract" target="_blank" rel="noopener">ADS</a><span class="sep">&middot;</span><a href="https://doi.org/10.3847/1538-4357/ac0a77" target="_blank" rel="noopener">Journal</a></span></li><li>Kocjan &amp; Semenov 2026<span class="sep">&middot;</span><span class="ti">The Rhythm of the ISM: Timescales of Gas Evolution</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/2602.02657" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://ui.adsabs.harvard.edu/abs/2026ApJ..1007...46K/abstract" target="_blank" rel="noopener">ADS</a><span class="sep">&middot;</span><a href="https://iopscience.iop.org/article/10.3847/1538-4357/ae8539" target="_blank" rel="noopener">Journal</a></span></li></ul></div></div><div class="rs" id="cosmic-rays"><img class="mini" src="assets/icon/cr-icon.png?v=1787684172" alt=""><div><h3>Cosmic ray feedback</h3><p>Cosmic rays are high-energy particles produced mainly by supernovae. Closer to home,
+        the particle showers they set off in the atmosphere are a known nuisance for electronics,
+        occasionally flipping a bit in computer memory, which is why aviation and spacecraft systems
+        are hardened against them. On the scales of galaxies their effect is far more consequential:
+        they can shape the distribution of gas inside and outside galaxies, and so help control how
+        galaxies evolve. How far and how fast they travel is the critical unknown that limits our
+        understanding of these effects. Observations indicate that cosmic rays move much more slowly
+        near star-forming regions than through typical interstellar gas, likely because they scatter
+        off the turbulent magnetic fields there. We showed that this slower transport changes galactic
+        structure dramatically: in gas-rich, gravitationally unstable galaxies, the cosmic ray pressure
+        that builds up locally prevents gas from collapsing, stabilizing the galaxy as a whole.</p><figure class="rsfig dark"><video width="2000" height="1000" preload="none" playsinline muted loop controls poster="assets/video/semenov21cr3-fg0.4-suppk.poster.jpg?v=1787679553"><source src="movies/semenov21cr3-fg0.4-suppk.mp4?v=1623598054" type="video/mp4"></video><figcaption>Cosmic ray feedback &mdash; CRs with diffusivity suppression</figcaption></figure><ul class="refs"><li>Semenov et al. 2021<span class="sep">&middot;</span><span class="ti">CR Diffusion Suppression Inhibits Clump Formation</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/2012.01427" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://ui.adsabs.harvard.edu/abs/2021ApJ...910..126S/abstract" target="_blank" rel="noopener">ADS</a><span class="sep">&middot;</span><a href="https://doi.org/10.3847/1538-4357/abe2a6" target="_blank" rel="noopener">Journal</a></span></li></ul></div></div><div class="rs" id="unresolved-turbulence"><img class="mini" src="assets/icon/sgst-icon.png?v=1787684172" alt=""><div><h3>Modeling unresolved turbulence and star formation</h3><p>Why does one clump of dense gas turn much of its mass into stars while another turns
+        almost none? A large part of the answer lies in how turbulent gas motions shape the internal
+        structure of such regions. These motions and structures exist on scales far smaller than
+        state-of-the-art galaxy simulations can resolve, so they have to be modeled. I develop models
+        for such unresolved turbulence, following the methods outlined above, and test how they shape
+        galaxy evolution on large scales. This approach, also known as Large Eddy Simulation, helps
+        make simulations predictive in extreme regimes where the usual approaches based on calibration
+        against observations break down &mdash; for example, the early Universe described above.</p><figure class="rsfig dark"><video width="2000" height="1000" preload="none" playsinline muted loop controls poster="assets/video/semenov17-maps.poster.jpg?v=1787679552"><source src="movies/semenov17-maps.mp4?v=1580589961" type="video/mp4"></video><figcaption>Simulation of a galaxy with a subgrid turbulence model: young stars, gas density, temperature, and turbulent velocities on unresolved scales</figcaption></figure><ul class="refs"><li>Semenov et al. 2016<span class="sep">&middot;</span><span class="ti">Nonuniversal Star Formation Efficiency</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/1512.03101" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://doi.org/10.3847/0004-637X/826/2/200" target="_blank" rel="noopener">Journal</a></span></li><li>Semenov 2025<span class="sep">&middot;</span><span class="ti">Capturing Turbulence with Numerical Dissipation</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/2410.23339" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://ui.adsabs.harvard.edu/abs/2024arXiv241023339S/abstract" target="_blank" rel="noopener">ADS</a><span class="sep">&middot;</span><a href="https://iopscience.iop.org/article/10.3847/1538-4365/ae0cc6" target="_blank" rel="noopener">Journal</a></span></li><li>Semenov et al. 2025<span class="sep">&middot;</span><span class="ti">From UV-bright Galaxies to Early Disks</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/2410.09205" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://ui.adsabs.harvard.edu/abs/2024arXiv241009205S/abstract" target="_blank" rel="noopener">ADS</a><span class="sep">&middot;</span><a href="https://iopscience.iop.org/article/10.3847/1538-4357/ade22d" target="_blank" rel="noopener">Journal</a></span></li></ul></div></div><div class="rs" id="numerical-methods"><img class="mini" src="assets/icon/numerical-grid.png?v=1787698260" alt=""><div><h3>Numerical Methods for Astrophysics</h3><p>Galaxy formation is an inherently multiscale and multiphysics problem. The range of
+        scales involved is enormous, comparable to the range between the size of the Earth and an
+        orange, and those scales are tightly coupled through the feedback loops described above.
+        Together these make the problem hard to tackle numerically. Much of my work develops and
+        improves the numerical methods needed to treat the relevant processes, including many of those
+        described above: turbulence, cosmic rays, star formation, stellar feedback, and the broader
+        algorithms behind adaptive mesh refinement hydrodynamics.</p><ul class="refs"><li>Semenov et al. 2022<span class="sep">&middot;</span><span class="ti">Entropy-Conserving Scheme for Nonthermal Energies</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/2107.14240" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://ui.adsabs.harvard.edu/abs/2022ApJS..261...16S/abstract" target="_blank" rel="noopener">ADS</a><span class="sep">&middot;</span><a href="https://doi.org/10.3847/1538-4365/ac69e1" target="_blank" rel="noopener">Journal</a></span></li><li>Semenov 2025<span class="sep">&middot;</span><span class="ti">Capturing Turbulence with Numerical Dissipation</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/2410.23339" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://ui.adsabs.harvard.edu/abs/2024arXiv241023339S/abstract" target="_blank" rel="noopener">ADS</a><span class="sep">&middot;</span><a href="https://iopscience.iop.org/article/10.3847/1538-4365/ae0cc6" target="_blank" rel="noopener">Journal</a></span></li><li>Gnedin et al. 2018<span class="sep">&middot;</span><span class="ti">Enforcing the CFL Condition in Local Time Stepping</span><span class="lnks"><span class="sep">&middot;</span><a href="https://arxiv.org/abs/1801.03108" target="_blank" rel="noopener">arXiv</a><span class="sep">&middot;</span><a href="https://doi.org/10.1016/j.jcp.2018.01.008" target="_blank" rel="noopener">Journal</a></span></li></ul></div></div></div></section>
+
+<footer>Center for Astrophysics | Harvard &amp; Smithsonian &middot; <a href="mailto:vadim.semenov@cfa.harvard.edu">vadim.semenov@cfa.harvard.edu</a></footer>
+<script src="assets/mock.js?v=1787700034"></script></body></html>

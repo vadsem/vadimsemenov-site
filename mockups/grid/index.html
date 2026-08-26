@@ -1,0 +1,95 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vadim Semenov &mdash; Grid</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=Fraunces:opsz,wght@9..144,300;9..144,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/reset.css">
+<style>
+:root{--bg:#f2f2f0;--fg:#0e0e0e;--mut:#6b6b6b;--line:#d6d6d2;--acc:#0a72a0}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.6 Inter,system-ui,sans-serif;
+ -webkit-font-smoothing:antialiased}
+a{color:var(--acc)}
+.g{max-width:1280px;margin:0 auto;padding:0 28px;
+ display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.masthead{padding:5rem 0 2rem}
+.masthead h1{grid-column:1/9;font-size:clamp(2.4rem,7.2vw,5.8rem);font-weight:500;
+ letter-spacing:-.04em;line-height:.94}
+.masthead .meta{grid-column:9/13;align-self:end;font-size:.82rem;color:var(--mut)}
+.masthead .meta b{display:block;color:var(--fg);font-weight:500;letter-spacing:-.01em;
+ font-size:.95rem;margin-bottom:.3rem}
+nav.top{position:sticky;top:0;z-index:50;background:var(--bg);
+ border-top:1px solid var(--fg);border-bottom:1px solid var(--line)}
+nav.top .g{padding-top:.85rem;padding-bottom:.85rem}
+nav.top a{grid-column:span 2;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+ color:var(--fg);text-decoration:none;opacity:.6}
+nav.top a:hover{opacity:1;color:var(--acc)}
+section{padding:5rem 0}
+h2{grid-column:1/3;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--acc);font-weight:500}
+.col{grid-column:3/10}
+.col p{margin-bottom:1.1rem;font-size:1.06rem;line-height:1.7}
+.side{grid-column:10/13;font-size:.85rem;color:var(--mut)}
+.tags{list-style:none}
+.tags li{padding:.3rem 0;border-bottom:1px solid var(--line)}
+.stats{grid-column:3/13;display:grid;grid-template-columns:repeat(5,1fr);gap:24px;
+ margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--fg)}
+.stat b{display:block;font-size:2.1rem;font-weight:500;letter-spacing:-.04em;line-height:1}
+.stat span{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.rs{grid-column:3/13;display:grid;grid-template-columns:repeat(10,1fr);gap:24px;
+ padding:2rem 0;border-top:1px solid var(--line)}
+.rs img{grid-column:span 2;width:100%;aspect-ratio:1;object-fit:cover}
+.rs div{grid-column:span 8}
+.rs h3{font-size:1.2rem;font-weight:500;letter-spacing:-.015em;margin-bottom:.4rem}
+.rs p{font-size:.95rem;color:#3c3c3c}
+.gal{grid-column:1/13;display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.fig{grid-column:span 6}
+.fig.wide{grid-column:span 12}
+.fig video{width:100%;height:auto;display:block;background:#111}
+.fig.paper video{background:#fff;border:1px solid var(--line)}
+figcaption{margin-top:.7rem;font-size:.82rem;color:var(--mut)}
+.sq{grid-column:1/13;display:grid;grid-template-columns:repeat(5,1fr);gap:24px;margin-bottom:3rem}
+.sq img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.pubs{grid-column:3/13;list-style:none}
+.pubs li{display:grid;grid-template-columns:1fr 3fr;gap:24px;padding:1rem 0;
+ border-top:1px solid var(--line)}
+.pubs .au{font-size:.8rem;color:var(--mut)}
+.pubs .jr{display:block;font-size:.8rem;color:var(--acc)}
+.pubs .ti{font-size:1rem;letter-spacing:-.01em}
+footer{border-top:1px solid var(--fg);margin-top:3rem}
+footer .g{padding-top:3rem;padding-bottom:3rem}
+footer a{grid-column:1/6;font-size:.9rem}
+@media(max-width:860px){.masthead h1,.masthead .meta,.col,.side,.stats,.rs,.pubs,.gal,.sq,
+ .fig,.fig.wide,h2,footer a{grid-column:1/13}.stats,.sq{grid-template-columns:repeat(2,1fr)}
+ .rs{grid-template-columns:1fr}.rs img,.rs div{grid-column:1/-1}.rs img{aspect-ratio:16/9}
+ nav.top a{grid-column:span 4}.pubs li{grid-template-columns:1fr}}
+</style></head><body class="t-grid"><div class="mockbar"><span class="mocklabel">Mockup</span><a href="../observatory/">Observatory</a><a href="../journal/">Journal</a><a href="../grid/" class="on">Grid</a><a href="../atlas/">Atlas</a><a href="../split/">Split</a><a class="mockhome" href="../">all five</a></div>
+<header class="masthead g"><h1>Vadim Semenov</h1>
+ <div class="meta"><b>Computational astrophysicist</b>Center for Astrophysics | Harvard &amp; Smithsonian<br>vadim.semenov@cfa.harvard.edu</div></header>
+<nav class="top"><div class="g"><a href="#about">About</a><a href="#research">Research</a><a href="#publications">Publications</a><a href="#visualizations">Visualizations</a><a href="#cv">CV</a></div></nav>
+<section id="about"><div class="g"><h2>About</h2><div class="col"><p>I am a computational astrophysicist at the <a href="https://www.cfa.harvard.edu/">Center for
+    Astrophysics | Harvard &amp; Smithsonian</a>, where I have been a
+    <a href="https://hubblesite.org/contents/news-releases/2019/news-2019-24.html">NASA Hubble</a> and
+    <a href="https://itc.cfa.harvard.edu/">ITC</a> Postdoctoral Fellow since 2019. Since 2026 I am also
+    a STEM Fellow at Anthropic. I received my PhD from the
+    <a href="http://astro.uchicago.edu/index.php">University of Chicago</a> in 2019.</p><p>I work at the interface between the physics of the interstellar medium and the formation and
+    evolution of galaxies. Together with my collaborators, I design, run, and analyze supercomputer
+    simulations that span scales from individual star-forming regions to cosmological volumes.</p></div>
+ <div class="side"><ul class="tags"><li>Cosmological galaxy formation simulations</li><li>Formation of galactic disks</li><li>The first galaxies</li><li>The baryon cycle in and out of galaxies</li><li>Star formation scaling relations</li><li>Interstellar turbulence</li><li>Cosmic rays</li><li>Numerical methods</li></ul></div>
+ <div class="stats"><div class="stat"><b>34</b><span>papers</span></div><div class="stat"><b>14</b><span>first-author</span></div><div class="stat"><b>8</b><span>led by students</span></div><div class="stat"><b>20</b><span>h-index</span></div><div class="stat"><b>1200+</b><span>citations</span></div></div></div></section>
+<section id="research"><div class="g"><h2>Research</h2><div class="rs"><img src="../assets/img/frame.0396.density.thumb.jpg" alt=""><div><h3>Modeling Early Turbulent Formation and Evolution of Galaxies</h3><p>JWST has revealed a surprisingly large population of UV-bright galaxies in the early
+        Universe, many of them already showing disk morphologies. We show that modeling star formation
+        together with the turbulent state of the interstellar medium is what produces both the early
+        variable star formation rates and the formation and survival of early disks.</p></div></div><div class="rs"><img src="../assets/img/frame.0425.vmag.thumb.jpg" alt=""><div><h3>How Unusual is the Milky Way&rsquo;s Disk?</h3><p>Gaia, H3, and APOGEE suggest the disk of our Galaxy formed within the first 2 billion
+        years &mdash; far earlier than high-resolution cosmological simulations found. Using TNG50 we find
+        that Milky-Way-mass galaxies do form later on average, but the scatter is large: about 10% form
+        disks as early as the Milky Way did.</p></div></div><div class="rs"><img src="../assets/img/frame.0373.density.thumb.jpg" alt=""><div><h3>Why do galaxies form stars inefficiently?</h3><p>We outline a framework connecting galaxy-scale star formation rates to the timescales
+        of gas cycling on the scales of star-forming regions. It explains the global inefficiency of star
+        formation, the near-linear correlation between star formation and molecular gas on kiloparsec
+        scales, and the self-regulation of star formation in simulations.</p></div></div><div class="rs"><img src="../assets/img/frame.0396.vmag.thumb.jpg" alt=""><div><h3>Cosmic ray feedback</h3><p>Cosmic rays carry a significant fraction of the pressure and energy budget of the
+        interstellar medium. We show that the reduced propagation observed near star-forming regions
+        qualitatively changes the structure of galaxies, suppressing the formation of dense gas clumps in
+        gas-rich, unstable disks.</p></div></div></div></section>
+<section id="visualizations"><div class="g"><div class="sq"><img src="../assets/img/frame.0396.density.thumb.jpg" alt="Gas density in a simulation of supersonic interstellar turbulence"><img src="../assets/img/frame.0425.vmag.thumb.jpg" alt="Velocity magnitude in a simulation of supersonic interstellar turbulence"><img src="../assets/img/frame.0373.density.thumb.jpg" alt="Gas density in a simulation of supersonic interstellar turbulence"><img src="../assets/img/frame.0396.vmag.thumb.jpg" alt="Velocity magnitude in a simulation of supersonic interstellar turbulence"><img src="../assets/img/frame.0425.density.thumb.jpg" alt="Gas density in a simulation of supersonic interstellar turbulence"></div>
+ <h2>Visualizations</h2><div class="gal"><figure class="fig dark wide"><video width="1200" height="600" preload="none" playsinline muted loop controls poster="../assets/video/semenov24-art.poster.jpg"><source src="../../movies/semenov24-art.mp4" type="video/mp4"></video><figcaption>Cosmological simulation of a Milky Way-like galaxy analog</figcaption></figure><figure class="fig paper "><video width="2670" height="1500" preload="none" playsinline muted loop controls poster="../assets/video/semenov24-art-tng.poster.jpg"><source src="../../movies/semenov24-art-tng.mp4" type="video/mp4"></video><figcaption>Cosmological simulation of a Milky Way-like galaxy with ART and TNG</figcaption></figure><figure class="fig paper "><video width="1950" height="870" preload="none" playsinline muted loop controls poster="../assets/video/semenov24-art-disk.poster.jpg"><source src="../../movies/semenov24-art-disk.mp4" type="video/mp4"></video><figcaption>Disk formation in a cosmological simulation of a MW analog</figcaption></figure><figure class="fig dark wide"><video width="2000" height="1000" preload="none" playsinline muted loop controls poster="../assets/video/semenov17-maps.poster.jpg"><source src="../../movies/semenov17-maps.mp4" type="video/mp4"></video><figcaption>Simulation of a galaxy with a subgrid turbulence model</figcaption></figure><figure class="fig paper "><video width="1232" height="720" preload="none" playsinline muted loop controls poster="../assets/video/semenov17-gas-cycling.poster.jpg"><source src="../../movies/semenov17-gas-cycling.mp4" type="video/mp4"></video><figcaption>Cycling of interstellar gas between star-forming and non-star-forming states</figcaption></figure></div></div></section>
+<section id="publications"><div class="g"><h2>Publications</h2>
+ <ul class="pubs"><li><span class="au">Semenov 2026</span><span class="jr">ApJ accepted</span><span class="ti">How Do Disk Galaxies Form?</span></li><li><span class="au">Semenov, Conroy, Hernquist 2025</span><span class="jr">ApJ 989, 219</span><span class="ti">From UV-bright Galaxies to Early Disks: the Importance of Turbulent Star Formation in the Early Universe</span></li><li><span class="au">Semenov, Conroy, Smith, Puchwein, Hernquist 2025</span><span class="jr">ApJ 990, 7</span><span class="ti">How Early Could the Milky Way&rsquo;s Disk Form?</span></li><li><span class="au">Semenov 2025</span><span class="jr">ApJS 281, 37</span><span class="ti">Capturing Turbulence with Numerical Dissipation: a Simple Dynamical Model for Unresolved Turbulence</span></li><li><span class="au">Semenov, Conroy, Chandra, Hernquist, Nelson 2024</span><span class="jr">ApJ 962, 84</span><span class="ti">Formation of Galactic Disks I: Why did the Milky Way&rsquo;s Disk Form Unusually Early?</span></li></ul></div></section>
+<footer><div class="g"><a href="mailto:vadim.semenov@cfa.harvard.edu">vadim.semenov@cfa.harvard.edu</a></div></footer>
+<script src="../assets/mock.js"></script></body></html>
