@@ -1,10 +1,11 @@
 .DS_Store
-shots/
-wp-theme/
-mockups/observatory/
-# source media; the derived, web-sized copies live in docs/
-movies/
-visuals/
-mockups/assets/
-VadimSemenov-CV.pdf
-docs/CNAME.pending
+# leading slashes anchor these to the repo root, so they do not also match
+# docs/movies, docs/assets, etc.
+/shots/
+/wp-theme/
+/mockups/observatory/
+/movies/
+/visuals/
+/mockups/assets/
+/VadimSemenov-CV.pdf
+/docs/CNAME.pending
