@@ -8,3 +8,5 @@
 /visuals/
 /mockups/assets/
 /VadimSemenov-CV.pdf
+__pycache__/
+*.pyc

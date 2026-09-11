@@ -10,8 +10,10 @@ TAGLINE = "Computational astrophysicist"
 AFFIL = "Center for Astrophysics | Harvard &amp; Smithsonian"
 EMAIL = "vadim.semenov@cfa.harvard.edu"
 
-CV_URL = ("https://www.dropbox.com/scl/fi/m8q2ipx206lrzqg2akyem/VadimSemenov-CV.pdf"
-          "?rlkey=pn1s1kxsd2cv5jgz7ykce1q13&st=to23s06l&dl=0")
+# Served from the site itself. The previous Dropbox share link broke the moment the
+# file was replaced -- Dropbox returns HTTP 200 with a "this item was deleted" page,
+# so the breakage is invisible to a status-code check.
+CV_URL = "VadimSemenov-CV.pdf"
 
 # Main page scrolls between About and Research only; the other two are real pages.
 NAV = [
@@ -67,9 +69,9 @@ EDUCATION = [
 ]
 
 STATS = [
-    ("34", "papers"),
+    ("35", "papers"),
     ("14", "first-author"),
-    ("8", "led by students"),
+    ("9", "led by students"),
     ("20", "h-index"),
     ("1200+", "citations"),
 ]
@@ -301,6 +303,8 @@ PUBS = [
          "Statistical Analysis of the Large-Scale Structure of the Universe Using Observational Data and Numerical Modeling"),
     ]),
     ("Led by co-advised students", [
+        ("Kocjan, Diemer, Semenov, Bialy, Malamud 2026", "submitted", "2608.28747",
+         "Shock-heated Away: The Impact of Radiative Cooling on Gas-Phase Transitions in Supernova Remnants"),
         ("Kocjan, Semenov 2026", "ApJ 1007, 46", "2602.02657",
          "The Rhythm of the ISM: Tracing the Timescales of Gas Evolution and Star Formation across Galactic Environments"),
         ("Konietzka, Connor, Semenov, Beane, Springel, Hernquist 2025", "ApJ accepted", "2507.07090",
@@ -352,6 +356,7 @@ PUBS = [
 # publications page so each link belongs to its own entry; missing publisher
 # links fall back to a DOI resolved from the arXiv API or Crossref.
 REFS = {
+    "2608.28747": {"ads": '2026arXiv260828747K', "url": None},
     "2013ARep": {"ads": '2013ARep...57..485S', "url": None},
     "1512.03101": {"ads": None, "url": 'https://doi.org/10.3847/0004-637X/826/2/200'},
     "1608.03244": {"ads": None, "url": 'https://doi.org/10.3847/1538-4357/834/1/69'},

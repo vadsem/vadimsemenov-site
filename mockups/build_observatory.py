@@ -202,7 +202,8 @@ def nav(active):
     out = ""
     for label, href in C.NAV:
         cls = ' class="on"' if label == active else ""
-        ext = ' target="_blank" rel="noopener"' if href.startswith("http") else ""
+        external = href.startswith("http") or href.endswith(".pdf")
+        ext = ' target="_blank" rel="noopener"' if external else ""
         out += '<a href="%s"%s%s>%s</a>' % (href, cls, ext, label)
     return '<nav class="top">%s</nav>' % out
 
