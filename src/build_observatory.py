@@ -138,6 +138,7 @@ figcaption{margin-top:.9rem;font-size:.9rem;color:var(--mut)}
  border-bottom:1px solid var(--line)}
 .pubs li{padding:1.1rem 0;border-bottom:1px solid var(--line)}
 .pubs .meta{font-size:.8rem;color:var(--mut);margin-bottom:.25rem}
+.pubs .meta strong{font-weight:500;color:var(--dim)}
 .pubs .meta .lnks{margin-left:.75rem}
 .pubs .meta a{color:#7fb4cc}
 .pubs .meta a:hover{color:var(--acc)}
@@ -376,8 +377,9 @@ def build_publications():
                                  '/abstract" target="_blank" rel="noopener">ADS</a></span>' % r["ads"])
             cluster = ('<span class="lnks">%s</span>'
                        % ' <span class="sep">&middot;</span> '.join(ref_links))
+            au = re.sub(r"\bSemenov\b", "<strong>Semenov</strong>", authors)
             lis += ('<li><div class="meta"><span class="au">%s</span>%s</div>'
-                    '<div class="ti">%s</div></li>' % (authors, cluster, title))
+                    '<div class="ti">%s</div></li>' % (au, cluster, title))
         groups += ('<h2 class="pubgroup">%s:</h2><ul class="pubs">%s</ul>'
                    % (heading, lis))
 

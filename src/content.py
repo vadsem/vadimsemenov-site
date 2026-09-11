@@ -235,7 +235,7 @@ MOVIES = [
     ("semenov21-ngc300-paper", "NGC300-like galaxy simulation &mdash; article version", "dark"),
     ("semenov21cr1-fg0.4-nocr", "Cosmic ray feedback in a gas-rich galaxy &mdash; no CRs", "dark"),
     ("semenov21cr2-fg0.4-constk", "Cosmic ray feedback &mdash; CRs with constant diffusivity", "dark"),
-    ("semenov21cr3-fg0.4-suppk", "Cosmic ray feedback &mdash; CRs with diffusivity suppression", "dark"),
+    ("semenov21cr3-fg0.4-suppk", "Cosmic ray feedback with local diffusivity suppression: gas density, star formation rate, turbulent pressure, cosmic ray pressure", "dark"),
 ]
 
 # Intrinsic pixel dimensions -- emitted as width/height attributes so figures reserve
