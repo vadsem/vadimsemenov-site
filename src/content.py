@@ -30,8 +30,8 @@ BIO = [
     """I am a computational astrophysicist at the <a href="https://www.cfa.harvard.edu/" target="_blank" rel="noopener">Center for
     Astrophysics | Harvard &amp; Smithsonian</a>, where I have been a
     <a href="https://hubblesite.org/contents/news-releases/2019/news-2019-24.html" target="_blank" rel="noopener">NASA Hubble</a> and
-    <a href="https://itc.cfa.harvard.edu/" target="_blank" rel="noopener">ITC</a> Postdoctoral Fellow since 2019. I am spending the
-    summer of 2026 at Anthropic as a STEM Fellow. I received my PhD from the
+    <a href="https://itc.cfa.harvard.edu/" target="_blank" rel="noopener">ITC</a> Postdoctoral Fellow since 2019. Since July 2026, I
+    have also been a STEM Fellow at Anthropic. I received my PhD from the
     <a href="https://astro.uchicago.edu/index.php" target="_blank" rel="noopener">University of Chicago</a> in 2019.""",
     """I work at the interface between the physics of the interstellar medium and galaxy formation.
     Together with my collaborators, I design, run, and analyze supercomputer simulations that span
@@ -51,7 +51,7 @@ INTERESTS = [
 # Abbreviated CV, grouped by institution. Source: VadimSemenov-CV.pdf.
 POSITIONS = [
     ("Anthropic", [
-        ("STEM Fellow", "Summer 2026"),
+        ("STEM Fellow", "since July 2026"),
     ]),
     ("Harvard University", [
         ("ITC Fellow", "since 2022"),
