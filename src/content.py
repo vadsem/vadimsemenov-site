@@ -69,9 +69,9 @@ EDUCATION = [
 ]
 
 STATS = [
-    ("35", "papers"),
+    ("36", "papers"),
     ("14", "first-author"),
-    ("9", "led by students"),
+    ("10", "led by students"),
     ("20", "h-index"),
     ("1200+", "citations"),
 ]
@@ -303,6 +303,8 @@ PUBS = [
          "Statistical Analysis of the Large-Scale Structure of the Universe Using Observational Data and Numerical Modeling"),
     ]),
     ("Led by co-advised students", [
+        ("Ugalino, Diemer, Semenov, Kim, Marinacci, Pfrommer, Schaller, Shchutskyi, Springel, Teyssier, Zier 2026", "submitted", "2610.02308",
+         "Towards robust simulations of the galactic dynamo: a cross-code comparison between Eulerian and Lagrangian schemes"),
         ("Kocjan, Diemer, Semenov, Bialy, Malamud 2026", "submitted", "2608.28747",
          "Shock-heated Away: The Impact of Radiative Cooling on Gas-Phase Transitions in Supernova Remnants"),
         ("Kocjan, Semenov 2026", "ApJ 1007, 46", "2602.02657",
@@ -356,6 +358,7 @@ PUBS = [
 # publications page so each link belongs to its own entry; missing publisher
 # links fall back to a DOI resolved from the arXiv API or Crossref.
 REFS = {
+    "2610.02308": {"ads": '2026arXiv261002308U', "url": None},
     "2608.28747": {"ads": '2026arXiv260828747K', "url": None},
     "2013ARep": {"ads": '2013ARep...57..485S', "url": None},
     "1512.03101": {"ads": None, "url": 'https://doi.org/10.3847/0004-637X/826/2/200'},
