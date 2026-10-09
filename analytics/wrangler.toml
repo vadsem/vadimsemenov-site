@@ -12,3 +12,9 @@ routes = [
 binding = "DB"
 database_name = "site-stats"
 database_id = "94cc7dfb-3500-497c-8450-59abda91b860"
+
+# Cloudflare Access for /_stats (team domain prefix and the application's AUD tag);
+# the worker verifies the Access token against these.
+[vars]
+ACCESS_TEAM = "vadimsemenov"
+ACCESS_AUD = "cc50122a4df06e1935b666cbecff52ccde224b90544971d7a2baf7ade6a0036c"
