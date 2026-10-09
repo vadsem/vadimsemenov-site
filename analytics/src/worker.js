@@ -98,7 +98,7 @@ async function logView(request, url, id, env) {
   let ref = null;
   try {
     const r = new URL(h.get("Referer"));
-    if (r.host !== url.host) ref = r.origin + r.pathname;
+    if (r.host.replace(/^www\./, "") !== url.host.replace(/^www\./, "")) ref = r.origin + r.pathname;
   } catch (e) {}
 
   const salt = await dailySalt(env, new Date(now).toISOString().slice(0, 10));

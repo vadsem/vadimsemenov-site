@@ -30,13 +30,19 @@ CREATE TABLE IF NOT EXISTS salts (
 
 DROP VIEW IF EXISTS classified;
 CREATE VIEW classified AS
-SELECT *,
+WITH burst AS (   -- visitors with many page loads in a day and not one beacon
+  SELECT visitor, date(ts / 1000, 'unixepoch') day FROM views
+  GROUP BY visitor, day HAVING count(*) >= 5 AND count(beacon_ts) = 0
+)
+SELECT v.*,
   CASE
     WHEN beacon_ts IS NOT NULL AND COALESCE(webdriver, 0) = 0 THEN 'human'
     -- No beacon (or a webdriver one): every modern browser sends Accept-Language and
     -- Sec-Fetch-Mode, so their absence marks a script.
-    WHEN beacon_ts IS NOT NULL OR ua_bot = 1 OR dc = 1 OR lang IS NULL OR sec_fetch = 0 THEN 'bot'
+    WHEN beacon_ts IS NOT NULL OR ua_bot = 1 OR dc = 1 OR lang IS NULL OR sec_fetch = 0
+      OR b.visitor IS NOT NULL THEN 'bot'
     ELSE 'probable'
   END AS kind,
   date(ts / 1000, 'unixepoch') AS day
-FROM views;
+FROM views v
+LEFT JOIN burst b ON b.visitor = v.visitor AND b.day = date(v.ts / 1000, 'unixepoch');

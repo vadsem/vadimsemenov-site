@@ -15,7 +15,8 @@ so the rules can be changed and applied retroactively:
 
 - human: the beacon fired and `navigator.webdriver` was false
 - probable: browser-like request without a beacon (ad blocker, JS off, left within 3 s)
-- bot: crawler user agent, hosting network, or missing browser headers
+- bot: crawler user agent, hosting network, missing browser headers, or 5+ views
+  from one visitor in a day without a single beacon
 
 Dashboard: https://vadimsemenov.com/_stats, behind Cloudflare Access (Zero Trust
 team `vadimsemenov`, application "Site stats", one-time PIN by email). The worker
