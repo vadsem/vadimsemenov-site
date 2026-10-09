@@ -26,6 +26,11 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
          '<link href="https://fonts.googleapis.com/css2?'
          'family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">')
 
+# GoatCounter page-view counter, production pages only (dashboard: vadimsemenov.goatcounter.com).
+ANALYTICS = "" if MOCKBAR else (
+    '<script data-goatcounter="https://vadimsemenov.goatcounter.com/count" '
+    'async src="//gc.zgo.at/count.js"></script>')
+
 CSS = """
 :root{--bg:#07090d;--fg:#e8edf4;--mut:#8c98aa;--dim:#c3ccda;--line:#1c242f;--acc:#63d3ff}
 body{background:var(--bg);color:var(--fg);font:300 17px/1.75 Inter,system-ui,sans-serif;
@@ -226,11 +231,11 @@ def page(fname, title, active, body):
 <link rel="stylesheet" href="%s">
 <style>%s</style></head><body>%s%s
 <footer>%s &middot; <a href="mailto:%s">%s</a></footer>
-<script src="%s"></script></body></html>"""
+<script src="%s"></script>%s</body></html>"""
             % (C.NAME, title, _v(IMG + "favicon-32.png"),
                _v(IMG + "favicon-180.png"), FONTS, _v(_P + "assets/reset.css"), CSS,
                mockbar(active), body, C.AFFIL, C.EMAIL, C.EMAIL,
-               _v(_P + "assets/mock.js")))
+               _v(_P + "assets/mock.js"), ANALYTICS))
 
 
 def masthead():
