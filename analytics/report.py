@@ -42,7 +42,6 @@ def main():
     ap.add_argument("--local", action="store_true")
     a = ap.parse_args()
     since = f"ts > (unixepoch() - {a.days} * 86400) * 1000"
-    people = f"{since} AND kind != 'bot'"
     q = lambda sql: query(sql, a.local)
 
     print(f"vadimsemenov.com, last {a.days} days")
@@ -55,10 +54,10 @@ def main():
         f"sum(kind='bot') bot, count(DISTINCT CASE WHEN kind != 'bot' THEN visitor END) visitors "
         f"FROM classified WHERE {since} GROUP BY day ORDER BY day"),
         ["day", "human", "probable", "bot", "visitors"])
-    table("Pages (human + probable)", q(
-        f"SELECT path, sum(kind='human') human, sum(kind='probable') probable "
-        f"FROM classified WHERE {people} GROUP BY path ORDER BY human + probable DESC LIMIT 20"),
-        ["path", "human", "probable"])
+    table("Pages", q(
+        f"SELECT path, sum(kind='human') human, sum(kind='probable') probable, sum(kind='bot') bot "
+        f"FROM classified WHERE {since} GROUP BY path ORDER BY sum(kind != 'bot') DESC, bot DESC LIMIT 20"),
+        ["path", "human", "probable", "bot"])
     table("Referrers", q(
         f"SELECT ref, sum(kind='human') human, sum(kind='probable') probable, sum(kind='bot') bot FROM classified WHERE {since} AND ref IS NOT NULL "
         f"GROUP BY ref ORDER BY sum(kind != 'bot') DESC, bot DESC LIMIT 20"),

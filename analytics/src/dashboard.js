@@ -15,19 +15,19 @@ export async function stats(request, env) {
 
 export async function render(env, days) {
   const since = Date.now() - days * 86400e3;
-  const people = "ts > ?1 AND kind != 'bot'";
+  const split = "sum(kind='human') human, sum(kind='probable') probable, sum(kind='bot') bot";
+  const order = "ORDER BY sum(kind != 'bot') DESC, bot DESC";
 
   const [kinds, daily, pages, refs, countries, bots] = (await env.DB.batch([
     `SELECT kind, count(*) n, count(DISTINCT day || visitor) vd FROM classified WHERE ts > ?1 GROUP BY kind`,
     `SELECT day, sum(kind='human') human, sum(kind='probable') probable, sum(kind='bot') bot,
             count(DISTINCT CASE WHEN kind != 'bot' THEN visitor END) visitors
        FROM classified WHERE ts > ?1 GROUP BY day`,
-    `SELECT path, sum(kind='human') human, sum(kind='probable') probable FROM classified
-      WHERE ${people} GROUP BY path ORDER BY count(*) DESC LIMIT 20`,
-    `SELECT ref, sum(kind='human') human, sum(kind='probable') probable, sum(kind='bot') bot FROM classified WHERE ts > ?1 AND ref IS NOT NULL
-      GROUP BY ref ORDER BY sum(kind != 'bot') DESC, bot DESC LIMIT 20`,
-    `SELECT country, sum(kind='human') human, sum(kind='probable') probable, sum(kind='bot') bot FROM classified WHERE ts > ?1
-      GROUP BY country ORDER BY sum(kind != 'bot') DESC, bot DESC LIMIT 20`,
+    `SELECT path, ${split} FROM classified WHERE ts > ?1 GROUP BY path ${order} LIMIT 20`,
+    `SELECT ref, ${split} FROM classified WHERE ts > ?1 AND ref IS NOT NULL
+      GROUP BY ref ${order} LIMIT 20`,
+    `SELECT country, ${split} FROM classified WHERE ts > ?1
+      GROUP BY country ${order} LIMIT 20`,
     `SELECT ua, as_org, ua_bot, dc, lang IS NULL no_lang, count(*) n FROM classified
       WHERE ts > ?1 AND kind = 'bot' GROUP BY ua, as_org ORDER BY n DESC LIMIT 15`,
   ].map((q) => env.DB.prepare(q).bind(since)))).map((r) => r.results);
@@ -60,9 +60,9 @@ export async function render(env, days) {
     [["day", "Day"], ["human", "Human"], ["probable", "Probable"], ["visitors", "Visitors"], ["bot", "Bots"]])}</details>
 </section>
 <div class="grid">
-<section class="card"><h2>Pages</h2>${table(pages, [["path", "Path"], ["human", "Human"], ["probable", "Probable"]])}</section>
-<section class="card"><h2>Referrers</h2>${table(refs, [["ref", "Referrer"], ...[["human", "Human"], ["probable", "Probable"], ["bot", "Bot"]]])}</section>
-<section class="card"><h2>Countries</h2>${table(countries, [["country", "Country"], ...[["human", "Human"], ["probable", "Probable"], ["bot", "Bot"]]])}</section>
+<section class="card"><h2>Pages</h2>${table(pages, [["path", "Path"], ...KINDS])}</section>
+<section class="card"><h2>Referrers</h2>${table(refs, [["ref", "Referrer"], ...KINDS])}</section>
+<section class="card"><h2>Countries</h2>${table(countries.map((c) => ({ ...c, country: countryName(c.country) })), [["country", "Country"], ...KINDS])}</section>
 <section class="card wide"><h2>Top bot sources</h2>${table(bots.map((b) => ({ ...b,
     why: [b.ua_bot && "user agent", b.dc && "hosting network", b.no_lang && "no language"].filter(Boolean).join(", ") || "no beacon / headers" })),
     [["ua", "User agent"], ["as_org", "Network"], ["why", "Flagged by"], ["n", "Views"]])}</section>
@@ -71,6 +71,17 @@ export async function render(env, days) {
 with no beacon, e.g. ad blocker, JavaScript off, or left within 3 s. Visitors are counted per day from a
 daily-salted hash and summed over the period.</p>
 </main><div id="tip" role="status" hidden></div><script>${TIP_JS}</script></body></html>`;
+}
+
+const KINDS = [["human", "Human"], ["probable", "Probable"], ["bot", "Bot"]];
+
+const REGION = new Intl.DisplayNames(["en"], { type: "region" });
+
+function countryName(code) {
+  // Cloudflare uses T1 for Tor exit nodes and XX for unknown.
+  if (!code || code === "XX") return "Unknown";
+  if (code === "T1") return "Tor network";
+  try { return REGION.of(code) || code; } catch (e) { return code; }
 }
 
 function tile(label, value, sub) {
