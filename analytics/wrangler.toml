@@ -1,0 +1,14 @@
+name = "site-stats"
+main = "src/worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = false
+
+routes = [
+  { pattern = "vadimsemenov.com/*", zone_name = "vadimsemenov.com" },
+  { pattern = "www.vadimsemenov.com/*", zone_name = "vadimsemenov.com" },
+]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "site-stats"
+database_id = "94cc7dfb-3500-497c-8450-59abda91b860"
