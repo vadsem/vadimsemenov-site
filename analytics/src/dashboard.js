@@ -24,9 +24,10 @@ export async function render(env, days) {
        FROM classified WHERE ts > ?1 GROUP BY day`,
     `SELECT path, sum(kind='human') human, sum(kind='probable') probable FROM classified
       WHERE ${people} GROUP BY path ORDER BY count(*) DESC LIMIT 20`,
-    `SELECT ref, count(*) n FROM classified WHERE ${people} AND ref IS NOT NULL
-      GROUP BY ref ORDER BY n DESC LIMIT 20`,
-    `SELECT country, count(*) n FROM classified WHERE ${people} GROUP BY country ORDER BY n DESC LIMIT 15`,
+    `SELECT ref, sum(kind='human') human, sum(kind='probable') probable, sum(kind='bot') bot FROM classified WHERE ts > ?1 AND ref IS NOT NULL
+      GROUP BY ref ORDER BY sum(kind != 'bot') DESC, bot DESC LIMIT 20`,
+    `SELECT country, sum(kind='human') human, sum(kind='probable') probable, sum(kind='bot') bot FROM classified WHERE ts > ?1
+      GROUP BY country ORDER BY sum(kind != 'bot') DESC, bot DESC LIMIT 20`,
     `SELECT ua, as_org, ua_bot, dc, lang IS NULL no_lang, count(*) n FROM classified
       WHERE ts > ?1 AND kind = 'bot' GROUP BY ua, as_org ORDER BY n DESC LIMIT 15`,
   ].map((q) => env.DB.prepare(q).bind(since)))).map((r) => r.results);
@@ -60,8 +61,8 @@ export async function render(env, days) {
 </section>
 <div class="grid">
 <section class="card"><h2>Pages</h2>${table(pages, [["path", "Path"], ["human", "Human"], ["probable", "Probable"]])}</section>
-<section class="card"><h2>Referrers</h2>${table(refs, [["ref", "Referrer"], ["n", "Views"]])}</section>
-<section class="card"><h2>Countries</h2>${table(countries, [["country", "Country"], ["n", "Views"]])}</section>
+<section class="card"><h2>Referrers</h2>${table(refs, [["ref", "Referrer"], ...[["human", "Human"], ["probable", "Probable"], ["bot", "Bot"]]])}</section>
+<section class="card"><h2>Countries</h2>${table(countries, [["country", "Country"], ...[["human", "Human"], ["probable", "Probable"], ["bot", "Bot"]]])}</section>
 <section class="card wide"><h2>Top bot sources</h2>${table(bots.map((b) => ({ ...b,
     why: [b.ua_bot && "user agent", b.dc && "hosting network", b.no_lang && "no language"].filter(Boolean).join(", ") || "no beacon / headers" })),
     [["ua", "User agent"], ["as_org", "Network"], ["why", "Flagged by"], ["n", "Views"]])}</section>

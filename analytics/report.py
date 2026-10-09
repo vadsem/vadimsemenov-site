@@ -59,14 +59,14 @@ def main():
         f"SELECT path, sum(kind='human') human, sum(kind='probable') probable "
         f"FROM classified WHERE {people} GROUP BY path ORDER BY human + probable DESC LIMIT 20"),
         ["path", "human", "probable"])
-    table("Referrers (human + probable)", q(
-        f"SELECT ref, count(*) views FROM classified WHERE {people} AND ref IS NOT NULL "
-        f"GROUP BY ref ORDER BY views DESC LIMIT 20"),
-        ["ref", "views"])
-    table("Countries (human + probable)", q(
-        f"SELECT country, count(*) views FROM classified WHERE {people} "
-        f"GROUP BY country ORDER BY views DESC LIMIT 15"),
-        ["country", "views"])
+    table("Referrers", q(
+        f"SELECT ref, sum(kind='human') human, sum(kind='probable') probable, sum(kind='bot') bot FROM classified WHERE {since} AND ref IS NOT NULL "
+        f"GROUP BY ref ORDER BY sum(kind != 'bot') DESC, bot DESC LIMIT 20"),
+        ["ref", "human", "probable", "bot"])
+    table("Countries", q(
+        f"SELECT country, sum(kind='human') human, sum(kind='probable') probable, sum(kind='bot') bot FROM classified WHERE {since} "
+        f"GROUP BY country ORDER BY sum(kind != 'bot') DESC, bot DESC LIMIT 20"),
+        ["country", "human", "probable", "bot"])
     table("Top bot sources (to check the rules)", q(
         f"SELECT substr(ua, 1, 70) ua, as_org, ua_bot, dc, lang IS NULL no_lang, count(*) views "
         f"FROM classified WHERE {since} AND kind = 'bot' "
