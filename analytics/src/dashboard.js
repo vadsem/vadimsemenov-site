@@ -21,7 +21,8 @@ export async function render(env, days) {
   const [kinds, daily, pages, refs, countries, bots] = (await env.DB.batch([
     `SELECT kind, count(*) n, count(DISTINCT day || visitor) vd FROM classified WHERE ts > ?1 GROUP BY kind`,
     `SELECT day, sum(kind='human') human, sum(kind='probable') probable, sum(kind='bot') bot,
-            count(DISTINCT CASE WHEN kind != 'bot' THEN visitor END) visitors
+            count(DISTINCT CASE WHEN kind != 'bot' THEN visitor END) visitors,
+            count(DISTINCT CASE WHEN kind = 'human' THEN visitor END) vh
        FROM classified WHERE ts > ?1 GROUP BY day`,
     `SELECT path, ${split} FROM classified WHERE ts > ?1 GROUP BY path ${order} LIMIT 20`,
     `SELECT ref, ${split} FROM classified WHERE ts > ?1 AND ref IS NOT NULL
@@ -37,7 +38,8 @@ export async function render(env, days) {
   const series = [];
   for (let i = days - 1; i >= 0; i--) {
     const day = new Date(Date.now() - i * 86400e3).toISOString().slice(0, 10);
-    series.push(byDay[day] || { day, human: 0, probable: 0, bot: 0, visitors: 0 });
+    const r = byDay[day] || { day, human: 0, probable: 0, bot: 0, visitors: 0, vh: 0 };
+    series.push({ ...r, vp: r.visitors - r.vh });   // visitors with probable views only
   }
   const visitorDays = series.reduce((s, r) => s + r.visitors, 0);
 
@@ -53,11 +55,15 @@ export async function render(env, days) {
   ${tile("Visitors", visitorDays, "unique per day, summed")}
   ${tile("Bot views", k.bot?.n || 0, "filtered out")}
 </section>
-<section class="card"><h2>Daily views</h2>
-  <div class="legend"><span><i style="background:var(--s1)"></i>Human</span><span><i style="background:var(--s2)"></i>Probable</span></div>
-  ${chart(series)}
+<section class="card"><div class="cardhead"><h2>Daily</h2>
+  <div class="seg" role="group" aria-label="Chart"><button type="button" data-show="views" aria-pressed="true">Views</button><button type="button" data-show="visitors" aria-pressed="false">Unique visitors</button></div></div>
+  <div data-panel="views">${legend("Human", "Probable")}${chart(series, "human", "probable", ["Human", "Probable"],
+    (r) => `Visitors ${r.visitors} &middot; Bots ${r.bot}`, "Daily human and probable views")}</div>
+  <div data-panel="visitors" hidden>${legend("Human", "Probable only")}${chart(series, "vh", "vp", ["Human", "Probable only"],
+    (r) => `Views ${r.human + r.probable} &middot; Bots ${r.bot}`, "Daily unique human and probable-only visitors")}</div>
   <details><summary>Table</summary>${table(series.slice().reverse(),
-    [["day", "Day"], ["human", "Human"], ["probable", "Probable"], ["visitors", "Visitors"], ["bot", "Bots"]])}</details>
+    [["day", "Day"], ["human", "Human views"], ["probable", "Probable views"], ["vh", "Human visitors"],
+     ["vp", "Probable-only visitors"], ["bot", "Bot views"]])}</details>
 </section>
 <div class="grid">
 <section class="card"><h2>Pages</h2>${table(pages, [["path", "Path"], ...KINDS])}</section>
@@ -96,10 +102,15 @@ function table(rows, cols) {
   </tbody></table></div>`;
 }
 
-function chart(series) {
+function legend(a, b) {
+  return `<div class="legend"><span><i style="background:var(--s1)"></i>${a}</span><span><i style="background:var(--s2)"></i>${b}</span></div>`;
+}
+
+// Stacked daily bars: key a at the base (series 1), key b on top (series 2).
+function chart(series, a, b, labels, extra, aria) {
   const W = 720, H = 220, L = 36, B = 22, T = 8;
   const pw = W - L - 4, ph = H - B - T;
-  const max = Math.max(1, ...series.map((r) => r.human + r.probable));
+  const max = Math.max(1, ...series.map((r) => r[a] + r[b]));
   const step = niceStep(max);
   const top = Math.ceil(max / step) * step;
   const y = (v) => T + ph - (v / top) * ph;
@@ -112,15 +123,15 @@ function chart(series) {
   const labelEvery = Math.ceil(series.length / 6);
   series.forEach((r, i) => {
     const x = L + i * slot + (slot - bw) / 2;
-    const hTop = y(r.human), pTop = y(r.human + r.probable);
-    if (r.human) g += bar(x, hTop, bw, y(0) - hTop, !r.probable);
-    if (r.probable) g += bar(x, pTop, bw, Math.max(0, hTop - pTop - (r.human ? 2 : 0)), true, "s2");
+    const hTop = y(r[a]), pTop = y(r[a] + r[b]);
+    if (r[a]) g += bar(x, hTop, bw, y(0) - hTop, !r[b]);
+    if (r[b]) g += bar(x, pTop, bw, Math.max(0, hTop - pTop - (r[a] ? 2 : 0)), true, "s2");
     if ((series.length - 1 - i) % labelEvery === 0)
       g += `<text x="${x + bw / 2}" y="${H - 6}" class="axis" text-anchor="middle">${r.day.slice(5)}</text>`;
     g += `<rect x="${L + i * slot}" y="${T}" width="${slot}" height="${ph}" class="hit" tabindex="0"
-           data-tip="${r.day}|${r.human}|${r.probable}|${r.visitors}|${r.bot}"/>`;
+           data-tip="${r.day}|${labels[0]} ${r[a]}|${labels[1]} ${r[b]}|${extra(r)}"/>`;
   });
-  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Daily human and probable views">${g}
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${aria}">${g}
     <line x1="${L}" x2="${W - 4}" y1="${y(0)}" y2="${y(0)}" class="base"/></svg>`;
 }
 
@@ -179,6 +190,10 @@ nav a[aria-current]{background:var(--text);color:var(--bg);border-color:var(--te
 .tile,.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}
 .label{font-size:13px;color:var(--text2)}.value{font-size:28px;font-weight:600;font-variant-numeric:tabular-nums;margin:2px 0}.sub{font-size:12px;color:var(--muted)}
 .card{margin-bottom:12px;min-width:0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:12px}.grid .card{margin:0}.wide{grid-column:1/-1}
+.cardhead{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-bottom:8px}.cardhead h2{margin:0}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;padding:2px;gap:2px}
+.seg button{font:inherit;font-size:12px;border:0;background:none;color:var(--text2);padding:4px 10px;border-radius:5px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--text);color:var(--bg)}
 .legend{display:flex;gap:16px;font-size:13px;color:var(--text2);margin-bottom:6px}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
 svg{width:100%;height:auto;display:block}.gl{stroke:var(--line);stroke-width:1}.base{stroke:var(--muted);stroke-width:1}
 .axis{fill:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}.s1{fill:var(--s1)}.s2{fill:var(--s2)}
@@ -196,10 +211,16 @@ td{padding:5px 8px 5px 0;border-bottom:1px solid var(--line);color:var(--text);m
 const TIP_JS = `
 var tip=document.getElementById("tip");
 function show(el,x,y){var d=el.dataset.tip.split("|");
-tip.innerHTML="<b>"+d[0]+"</b><i style='background:var(--s1)'></i>Human "+d[1]+"<br><i style='background:var(--s2)'></i>Probable "+d[2]+"<br>Visitors "+d[3]+" &middot; Bots "+d[4];
+tip.innerHTML="<b>"+d[0]+"</b><i style='background:var(--s1)'></i>"+d[1]+"<br><i style='background:var(--s2)'></i>"+d[2]+"<br>"+d[3];
 tip.hidden=false;var w=tip.offsetWidth;tip.style.left=Math.min(x+12,innerWidth-w-8)+"px";tip.style.top=(y-tip.offsetHeight-12)+"px"}
 document.querySelectorAll(".hit").forEach(function(el){
 el.addEventListener("mousemove",function(e){show(el,e.clientX,e.clientY)});
 el.addEventListener("focus",function(){var r=el.getBoundingClientRect();show(el,r.left+r.width/2,r.top+40)});
 el.addEventListener("mouseleave",function(){tip.hidden=true});el.addEventListener("blur",function(){tip.hidden=true})});
+var segs=document.querySelectorAll(".seg button");
+function pick(m){segs.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.show===m)});
+document.querySelectorAll("[data-panel]").forEach(function(p){p.hidden=p.dataset.panel!==m});
+try{localStorage.setItem("chart",m)}catch(e){}}
+segs.forEach(function(b){b.addEventListener("click",function(){pick(b.dataset.show)})});
+try{var m=localStorage.getItem("chart");if(m==="visitors")pick(m)}catch(e){}
 `;
