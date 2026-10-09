@@ -17,6 +17,12 @@ so the rules can be changed and applied retroactively:
 - probable: browser-like request without a beacon (ad blocker, JS off, left within 3 s)
 - bot: crawler user agent, hosting network, or missing browser headers
 
+Dashboard: https://vadimsemenov.com/_stats, behind Cloudflare Access (Zero Trust
+team `vadimsemenov`, application "Site stats", one-time PIN by email). The worker
+also verifies the Access token against `ACCESS_TEAM` / `ACCESS_AUD` in
+`wrangler.toml` and returns 404 without a valid one. The page is rendered from D1
+on each request (`src/dashboard.js`); nothing is stored in the git repo.
+
 Commands (from this folder):
 
     python3 report.py --days 30                 # summary
