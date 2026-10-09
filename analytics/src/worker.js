@@ -2,6 +2,8 @@
 // every request is passed through unchanged, HTML pages are logged to D1 and
 // get a small inline beacon that confirms a real browser displayed them.
 
+import { stats } from "./dashboard.js";
+
 const BEACON = "/_k";   // neutral name, avoids /count, /collect, /track filter rules
 
 const BOT_UA = new RegExp([
@@ -43,6 +45,8 @@ export default {
       }
       return new Response(null, { status: 204 });
     }
+
+    if (url.pathname === "/_stats") return stats(request, env);
 
     if (request.method !== "GET" || !isPagePath(url.pathname)) return fetch(request);
 
