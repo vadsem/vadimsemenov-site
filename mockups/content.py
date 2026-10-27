@@ -273,7 +273,7 @@ ADS_LIBRARY = "https://ui.adsabs.harvard.edu/public-libraries/_KemY1lYQ0-gJC90XI
 # (authors, journal, arxiv_id, title). arxiv_id "" where the live site lists none.
 PUBS = [
     ("First author", [
-        ("Semenov 2026", "ApJ accepted", "2602.04950",
+        ("Semenov 2026", "ApJ 1010, 123", "2602.04950",
          "How Do Disk Galaxies Form?"),
         ("Semenov, Conroy, Hernquist 2025", "ApJ 989, 219", "2410.09205",
          "From UV-bright Galaxies to Early Disks: the Importance of Turbulent Star Formation in the Early Universe"),
@@ -393,7 +393,7 @@ REFS = {
     "2507.03182": {"ads": '2025arXiv250703182W', "url": 'https://astro.theoj.org/article/145734-what-sets-the-metallicity-of-ultra-faint-dwarfs'},
     "2507.07090": {"ads": '2025arXiv250707090K', "url": None},
     "2602.02657": {"ads": '2026ApJ..1007...46K', "url": 'https://iopscience.iop.org/article/10.3847/1538-4357/ae8539'},
-    "2602.04950": {"ads": '2026arXiv260204950S', "url": None},
+    "2602.04950": {"ads": '2026ApJ..1010..123S', "url": 'https://iopscience.iop.org/article/10.3847/1538-4357/ae83aa'},
 }
 
 # Per-video download and reference links, taken from the live visualizations page.
